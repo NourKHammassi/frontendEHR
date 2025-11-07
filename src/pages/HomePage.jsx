@@ -65,30 +65,34 @@ export const HomePage = () => {
       <Box
         sx={{
           position: "relative",
-          height: { xs: "90vh", md: "85vh" },
-          backgroundImage: `url(${architecture})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          height: { xs: "85vh", md: "80vh" },
+          backgroundColor: "#F8F5EF", // beige clair doux
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          color: "#fff",
-          textAlign: "center",
+          color: "#1B1B1B",
+          textAlign: "left",
+          px: { xs: 3, md: 8 },
         }}
       >
-        <Box
+        <Container
+          maxWidth="lg"
           sx={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.65) 100%)",
+            position: "relative",
+            zIndex: 2,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexDirection: { xs: "column", md: "row" },
+            gap: 4,
           }}
-        />
-        <Container maxWidth="md" sx={{ position: "relative", zIndex: 2 }}>
+        >
+          {/* Texte principal */}
           <motion.div
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1 }}
+            style={{ flex: 1 }}
           >
             <Typography
               variant="h2"
@@ -96,64 +100,91 @@ export const HomePage = () => {
                 fontWeight: 900,
                 mb: 3,
                 letterSpacing: 0.5,
-                fontSize: { xs: "2.5rem", md: "3.5rem" },
+                fontSize: { xs: "2.3rem", md: "3.3rem" },
+                color: "#1B1B1B",
               }}
             >
               L’ingénierie au service de vos projets
             </Typography>
+
             <Typography
               variant="h6"
               sx={{
-                maxWidth: 700,
-                mx: "auto",
-                opacity: 0.9,
-                mb: 4,
+                maxWidth: 600,
+                opacity: 0.8,
+                mb: 5,
                 fontWeight: 400,
+                lineHeight: 1.7,
+                color: "rgba(27,27,27,0.8)",
               }}
             >
-              De la conception à la réalisation, EHR vous accompagne dans tous
-              vos projets de construction et de rénovation, avec exigence et
-              passion.
+              De la conception à la réalisation, EHR vous accompagne dans tous vos projets
+              de construction et de rénovation — avec exigence, passion et savoir-faire.
             </Typography>
+          </motion.div>
 
-            <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
-              <Button
-                variant="contained"
-                sx={{
-                  background: `linear-gradient(90deg, ${bronze}, ${beigeGold})`,
-                  color: "#fff",
-                  fontWeight: 800,
-                  px: 4,
-                  py: 1.25,
-                  borderRadius: 2,
-                  "&:hover": { opacity: 0.95 },
-                }}
-                onClick={() => navigate("/demanderDevis")}
-              >
-                Demander un devis
-              </Button>
+          {/* Boutons à droite */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-end",
+              gap: "16px",
+              flex: 1,
+            }}
+          >
+            <Button
+              variant="contained"
+              sx={{
+                background: `linear-gradient(90deg, ${bronze}, ${beigeGold})`,
+                color: "#fff",
+                fontWeight: 800,
+                px: 4,
+                py: 1.3,
+                borderRadius: 2,
+                fontSize: "1rem",
+                width: "fit-content",
+                boxShadow: "0 8px 20px rgba(173,148,107,0.4)",
+                "&:hover": {
+                  transform: "translateY(-2px)",
+                  boxShadow: "0 10px 28px rgba(173,148,107,0.55)",
+                },
+              }}
+              onClick={() => navigate("/demanderDevis")}
+            >
+              Demander un devis
+            </Button>
 
-              <Button
-                variant="outlined"
-                sx={{
-                  borderColor: "#fff",
+            <Button
+              variant="outlined"
+              sx={{
+                borderColor: bronze,
+                color: bronze,
+                fontWeight: 700,
+                px: 3,
+                py: 1.2,
+                borderRadius: 2,
+                fontSize: "1rem",
+                width: "fit-content",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  backgroundColor: bronze,
                   color: "#fff",
-                  px: 3,
-                  py: 1.25,
-                  borderRadius: 2,
-                  "&:hover": {
-                    borderColor: beigeGold,
-                    color: beigeGold,
-                  },
-                }}
-                onClick={() => navigate("/services")}
-              >
-                Nos Métiers
-              </Button>
-            </Box>
+                  borderColor: bronze,
+                  boxShadow: "0 8px 20px rgba(173,148,107,0.4)",
+                },
+              }}
+              onClick={() => navigate("/services")}
+            >
+              Découvrir nos métiers
+            </Button>
           </motion.div>
         </Container>
       </Box>
+
 
       {/* ABOUT */}
       <Container maxWidth="lg" sx={{ py: 10 }}>

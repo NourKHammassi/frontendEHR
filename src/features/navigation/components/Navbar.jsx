@@ -145,11 +145,6 @@ export const Navbar = () => {
 
             {loggedInUser ? (
               <>
-                <NavButton component={Link} to="/profile">
-                  {userInfo?.firstName
-                    ? `Bonjour, ${userInfo.firstName}`
-                    : "Mon profil"}
-                </NavButton>
                 <NavButton
                   component={Link}
                   to="/logout"
@@ -208,22 +203,14 @@ export const Navbar = () => {
                 </MenuItem>
               ))}
               {loggedInUser ? (
-                <>
-                  <MenuItem
-                    component={Link}
-                    to="/profile"
-                    onClick={() => setAnchorEl(null)}
-                  >
-                    Mon Profil
-                  </MenuItem>
-                  <MenuItem
-                    component={Link}
-                    to="/logout"
-                    onClick={() => setAnchorEl(null)}
-                  >
-                    Déconnexion
-                  </MenuItem>
-                </>
+
+                <MenuItem
+                  component={Link}
+                  to="/logout"
+                  onClick={() => setAnchorEl(null)}
+                >
+                  Déconnexion
+                </MenuItem>
               ) : (
                 <MenuItem
                   onClick={() => {

@@ -126,7 +126,6 @@ export const BlogsBlock = () => {
                 }}
               >
                 <CardMedia
-                  component={motion.img}
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.4 }}
                   image={article.image}

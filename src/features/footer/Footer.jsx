@@ -7,17 +7,22 @@ import {
   Grid,
   useMediaQuery,
   useTheme,
-  IconButton,
   Divider,
 } from "@mui/material";
-import { FaCcMastercard, FaCcVisa, FaCcAmex } from "react-icons/fa";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectLoggedInUser } from "../auth/AuthSlice";
 import { motion } from "framer-motion";
+import {
+  Visa,
+  Mastercard,
+  Amex,
+  Applepay,
+  Googlepay,
+} from "react-pay-icons"; // ✅ Ajoutés Apple & Google Pay
 
-/* 🎨 Updated Bronze Palette */
+/* 🎨 Palette EHR */
 const palette = {
   bronze: "#AD946B",
   beigeGold: "#ADA06B",
@@ -30,10 +35,10 @@ const palette = {
 const FooterWrap = styled(Box)(({ theme }) => ({
   background: palette.bgLight,
   color: palette.text,
-  padding: "48px 28px 36px",
+  padding: "48px 28px 0px",
   borderTop: `3px solid ${palette.bronze}`,
   [theme.breakpoints.down("sm")]: {
-    padding: "36px 20px",
+    padding: "36px 20px 0px",
   },
 }));
 
@@ -74,27 +79,12 @@ export const Footer = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <Grid
-        container
-        spacing={4}
-        alignItems="flex-start"
-        justifyContent="space-between"
-      >
+      {/* === MAIN FOOTER CONTENT === */}
+      <Grid container spacing={4} justifyContent="space-between">
         {/* CONTACT */}
         <Grid item xs={12} md={5}>
           <Title>Discutons de votre projet</Title>
-          <Typography
-            sx={{
-              mb: 1.5,
-              color: "rgba(27,27,27,0.75)",
-              fontSize: 14,
-              lineHeight: 1.6,
-            }}
-          >
-            Un projet de rénovation, de construction ou d’aménagement ?
-            Contactez-nous dès aujourd’hui pour bénéficier de l’expertise EHR.
-            Devis gratuit sous 48h.
-          </Typography>
+
 
           <Stack spacing={0.3} sx={{ mt: 1 }}>
             <SmallText>📍 EHR SARL — {addr}</SmallText>
@@ -109,10 +99,6 @@ export const Footer = () => {
           <Stack spacing={0.3}>
             <SmallText onClick={() => navigate("/about")}>À propos</SmallText>
             <SmallText onClick={() => navigate("/services")}>Nos Métiers</SmallText>
-            <SmallText onClick={() => navigate("/conditionsVentes")}>CGV</SmallText>
-            <SmallText onClick={() => navigate("/conditionsUtilisation")}>
-              CGU & Mentions
-            </SmallText>
             <SmallText onClick={() => navigate("/demanderDevis")}>Contact</SmallText>
           </Stack>
         </Grid>
@@ -120,59 +106,66 @@ export const Footer = () => {
         {/* PAYMENTS */}
         <Grid item xs={12} sm={6} md={3}>
           <Title>Paiements sécurisés</Title>
-          <Stack direction="row" spacing={1} sx={{ mb: 1.5 }}>
-            {[FaCcMastercard, FaCcVisa, FaCcAmex].map((Icon, idx) => (
-              <IconButton
-                key={idx}
+          <Stack direction="row" flexWrap="wrap" gap={1.5} sx={{ mt: 1 }}>
+            {[Visa, Mastercard, Amex, Applepay, Googlepay].map((Icon, i) => (
+              <Box
+                key={i}
+                component={motion.div}
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 200 }}
                 sx={{
                   bgcolor: "#fff",
-                  width: 42,
-                  height: 42,
                   borderRadius: 2,
                   boxShadow: "0 2px 8px rgba(27,27,27,0.08)",
                   border: `1px solid ${palette.border}`,
-                  transition: "all 0.3s ease",
-                  "&:hover": {
-                    transform: "scale(1.08)",
-                    boxShadow: `0 3px 12px ${palette.bronze}33`,
-                  },
+                  p: 0.6,
                 }}
-                aria-label="payment"
               >
-                <Icon
-                  size={18}
-                  color={
-                    idx === 0
-                      ? "#EB001B"
-                      : idx === 1
-                        ? "#142787"
-                        : "#016FD0"
-                  }
-                />
-              </IconButton>
+                <Icon style={{ width: 40, height: 28 }} />
+              </Box>
             ))}
           </Stack>
-
-          <Divider
-            sx={{
-              width: "40%",
-              borderColor: palette.border,
-              my: 1,
-            }}
-          />
-
-          <Typography
-            sx={{
-              mt: 1.5,
-              fontSize: 12.5,
-              color: "rgba(27,27,27,0.6)",
-              textAlign: isMobile ? "center" : "left",
-            }}
-          >
-            © EHR {new Date().getFullYear()} — Tous droits réservés.
-          </Typography>
         </Grid>
       </Grid>
+
+      {/* SEPARATOR */}
+      <Divider sx={{ my: 3, borderColor: palette.border }} />
+
+      {/* BOTTOM BAR */}
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          py: 2,
+          borderTop: `1px solid ${palette.border}`,
+        }}
+      >
+        <Typography
+          sx={{
+            fontSize: 13,
+            color: "rgba(27,27,27,0.6)",
+            textAlign: isMobile ? "center" : "left",
+          }}
+        >
+          © EHR {new Date().getFullYear()} — Tous droits réservés.
+        </Typography>
+
+        <Stack
+          direction="row"
+          spacing={3}
+          sx={{
+            mt: isMobile ? 1.5 : 0,
+            justifyContent: "center",
+          }}
+        >
+          <SmallText onClick={() => navigate("/conditionsVentes")}>CGV</SmallText>
+          <SmallText onClick={() => navigate("/conditionsUtilisation")}>
+            CGU & Mentions légales
+          </SmallText>
+        </Stack>
+      </Box>
     </FooterWrap>
   );
 };
