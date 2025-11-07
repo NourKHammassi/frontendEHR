@@ -88,7 +88,7 @@ export const Footer = () => {
 
           <Stack spacing={0.3} sx={{ mt: 1 }}>
             <SmallText>📍 EHR SARL — {addr}</SmallText>
-            <SmallText>📧 {mail}</SmallText>
+            <SmallText>📧 ${process.env.REACT_APP_BASE_MAIL}</SmallText>
             <SmallText>📞 {phone}</SmallText>
           </Stack>
         </Grid>

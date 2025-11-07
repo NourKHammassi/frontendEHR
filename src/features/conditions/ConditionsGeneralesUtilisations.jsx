@@ -63,16 +63,17 @@ Immatriculée au RCS de Paris sous le numéro 918 202 714
 Date d’immatriculation : 8 août 2022
 Siège social : 2 rue Perdonnet, 75010 Paris, France
 Gérant : M. Rida Awlade Dyafe, né le 15/12/1972 à Rennes (France)
-📧 Email : contact@ehr-batiment.fr
+📧 Email : ${process.env.REACT_APP_BASE_MAIL}
 📞 Téléphone : +33 (0)1 84 00 00 00`,
-    },
+    }
+    ,
     {
       title: "Hébergement du site",
-      content: `Le site www.ehr-batiment.fr est hébergé par :
-Hostinger International Ltd.
-Adresse : 61 Lordou Vironos Street, 6023 Larnaca, Chypre
-🌐 www.hostinger.com
-📞 Téléphone : +370 645 03378`,
+      content: `Le site ${process.env.REACT_APP_BASE_URL} est hébergé par :
+Namecheap, Inc.
+Adresse : 4600 East Washington Street, Suite 305, Phoenix, AZ 85034, États-Unis
+🌐 www.namecheap.com
+📞 Téléphone : +1 (661) 310-2107`,
     },
     {
       title: "Propriété intellectuelle",
@@ -83,8 +84,9 @@ Toute reproduction, représentation, modification ou diffusion sans autorisation
       title: "Données personnelles",
       content: `Les données collectées via le site (formulaire de contact, demande de devis, etc.) sont utilisées uniquement dans le cadre de la relation commerciale avec EHR.
 Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, de suppression et d’opposition que vous pouvez exercer à :
-📧 contact@ehr-batiment.fr`,
-    },
+📧 ${process.env.REACT_APP_BASE_MAIL}`,
+    }
+    ,
     {
       title: "Droit applicable",
       content:

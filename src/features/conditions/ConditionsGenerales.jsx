@@ -45,7 +45,7 @@ export const ConditionsGeneralesVentes = () => {
     {
       title: "Article 7 – Réclamations",
       content:
-        "Toute réclamation doit être adressée par écrit à :\n📮 EHR SARL – 2 rue Perdonnet, 75010 Paris\n📧 contact@ehr-batiment.fr",
+        "Toute réclamation doit être adressée par écrit à :\n📮 EHR SARL – 2 rue Perdonnet, 75010 Paris\n📧 ${process.env.REACT_APP_BASE_MAIL}",
     },
     {
       title: "Article 8 – Données personnelles",

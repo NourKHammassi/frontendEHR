@@ -115,7 +115,7 @@ export const DevisForm = () => {
             <Stack direction="row" alignItems="center" spacing={1}>
               <EmailIcon sx={{ color: palette.bronze }} />
               <Typography variant="body2">
-                contact@ehr-batiment.fr
+                ${process.env.REACT_APP_BASE_MAIL}
               </Typography>
             </Stack>
 
